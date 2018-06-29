@@ -15,13 +15,13 @@ router.get('/',(req,res,next)=>{
     .then(docs=>{
         console.log(docs);
         res.status(200).json(docs);
-        if(docs.length>=0){
-            res.status(200).json(docs);
-        }else{
-            res.status(404).json({
-                message:'No entries found'
-            });
-        }
+        // if(docs.length>=0){
+        //     res.status(200).json(docs);
+        // }else{
+        //     res.status(404).json({
+        //         message:'No entries found'
+        //     });
+        // }
     })
     .catch(err=>{
         res.status(500).json({error:err});
@@ -69,6 +69,7 @@ router.post('/',(req,res,next)=>{
 });
 router.patch('/:productID',(req,res,next)=>{
     const productID = req.params.productID;
+    Product.update({_id:productID}, {$set:{name: req.body.newName, price:req.body.newPrice}});
     res.status(200).json({
         message: "product is updated w ID: " + productID
     });
