@@ -75,9 +75,9 @@ router.patch('/:productID',(req,res,next)=>{
     }
     Product.update({_id:productID}, {$set: updateOps})
     .exec()
-    .then(resp=>{
-        console.log(resp);
-        res.status(200).json(resp);
+    .then(result=>{
+        console.log(result);
+        res.status(200).json(result);
     })
     .catch(err=>{
         console.log(err);
