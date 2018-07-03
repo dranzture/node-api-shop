@@ -10,7 +10,7 @@ mongoose.connect('mongodb+srv://node-shop:'+ process.env.MONGO_ATLAS_PW +'@node-
             console.log("DATA CENTER - Connected")
         }
 });
-
+mongoose.Promise = global.Promise;
 
 
 app.use((req,res,next)=>{
