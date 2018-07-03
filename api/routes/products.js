@@ -106,6 +106,7 @@ router.patch('/:productID',(req,res,next)=>{
             message: 'Product updated',
             request:{
                 type:'PATCH',
+                description:'Here i learnt the stuff again',
                 url:'http://localhost:3000/products/'+ productID
             }
         });
