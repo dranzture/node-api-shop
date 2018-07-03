@@ -97,7 +97,7 @@ router.patch('/:productID',(req,res,next)=>{
     const productID = req.params.productID;
     const updateOps = {};
     for(const ops of req.body){
-        updateOps[ops.propName] = ops.value;
+        updateOps[ops.updateName] = ops.updateValue;
     }
     Product.update({_id:productID}, {$set: updateOps})
     .exec()
@@ -106,7 +106,7 @@ router.patch('/:productID',(req,res,next)=>{
             message: 'Product updated',
             request:{
                 type:'PATCH',
-                url:'http://localhost:3000/'+ productID
+                url:'http://localhost:3000/products/'+ productID
             }
         });
     })
