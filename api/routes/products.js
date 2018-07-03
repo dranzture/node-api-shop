@@ -75,16 +75,13 @@ router.patch('/:productID',(req,res,next)=>{
     }
     Product.update({_id:productID}, {$set: updateOps})
     .exec()
-    .then(res=>{
-        console.log(res);
-        res.status(200).json(res);
+    .then(resp=>{
+        console.log(resp);
+        res.status(200).json(resp);
     })
     .catch(err=>{
         console.log(err);
         res.status(500).json({error:err});
-    });
-    res.status(200).json({
-        message: "product is updated w ID: " + productID
     });
 });
 router.delete('/:productID',(req,res,next)=>{
