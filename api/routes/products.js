@@ -2,7 +2,8 @@ const express = require('express');
 const router = express();
 const mongoose = require('mongoose');
 const Product = require('../models/product');
-
+const multer = require('multer');
+const upload = multer({dest:'uploads/'});
 // router.use('/',(req,res,next)=>{
 //     res.status(200).json({
 //         message:"on the product page.."
@@ -63,7 +64,8 @@ router.get('/:productID',(req,res,next)=>{
     
 });
 
-router.post('/',(req,res,next)=>{
+router.post('/', upload.single('productImage'),(req,res,next)=>{
+    console.log(req.file);
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
@@ -123,7 +125,6 @@ router.delete('/:productID',(req,res,next)=>{
     .then(result=>{
         res.status(200).json({
             message:'Product deleted',
-            ashley: "Loves polat",
             req:{
                 really: 'something really dont matter that much'
             }
