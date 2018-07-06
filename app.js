@@ -12,7 +12,7 @@ mongoose.connect('mongodb+srv://node-shop:'+ process.env.MONGO_ATLAS_PW +'@node-
 });
 mongoose.Promise = global.Promise;
 
-
+app.use('/uploads',express.static('uploads'));
 app.use((req,res,next)=>{
     res.header('Access-Control-Allow-Origin','*');
     res.header('Access-Control-Allow-Headers',
@@ -26,6 +26,8 @@ app.use((req,res,next)=>{
 
 const productRoute = require('./api/routes/products.js');
 const orderRoute = require('./api/routes/orders.js');
+const userRoute = require('./api/routes/user.js');
+
 
 const morgan = require('morgan');
 app.use(morgan('dev'));
@@ -35,6 +37,7 @@ app.use(bodyParser.json());
 
 app.use('/products',productRoute);
 app.use('/orders',orderRoute);
+app.use('/user',userRoute);
 
 app.use((req,res,next)=>{
     const error = new Error('Not Found!');
